@@ -1,12 +1,12 @@
 import os
 from pathlib import Path
 
-from proj.conf import main
+import proj
 
 ENV_PREFIX = "PROJ_"
 
 # CODE_DIR points to the base directory where the code is
-CODE_DIR = Path(main.__file__).parent.parent.parent.parent.resolve()
+CODE_DIR = Path(proj.__file__).parent.parent.parent.resolve()
 
 # ROOT_DIR points to the base directory where all the data and results are
 ROOT_DIR = os.environ.get(f"{ENV_PREFIX}ROOT_DIR")

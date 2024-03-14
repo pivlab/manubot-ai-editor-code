@@ -16,7 +16,7 @@ import types
 from pathlib import PurePath
 
 # make all main config modules available at this level
-from proj.conf import common  # noqa: F401
+from proj.conf import common, nbs  # noqa: F401
 
 
 def generate_env_vars(conf_dict):
