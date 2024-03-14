@@ -1,1 +1,1 @@
-from . import github, nbs
+from . import github, nbs  # noqa: F401
