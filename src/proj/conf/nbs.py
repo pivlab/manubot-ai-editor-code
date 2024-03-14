@@ -2,6 +2,9 @@
 Contains configuration entries related to Jupyter Notebooks.
 """
 
+# Jupyter server port
+JUPYTER_SERVER_PORT = 8899
+
 # when a notebook is run from the command line and it finished successfully, it
 # indicates whether the original notebook should be overridden with the new one
 RUN_OVERRIDE = 1
