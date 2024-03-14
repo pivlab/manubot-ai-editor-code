@@ -8,6 +8,10 @@ fi
 # This script runs a Jupyter notebook (.ipynb) from the command line using
 # papermill.
 
+# export the configuration as environmental variables; this allows to use configuration
+# entries beyond python
+eval `python src/proj/conf/main.py`
+
 if [ -z "${1}" ]; then
     echo "Specify notebook to run"
     exit 1
@@ -25,9 +29,7 @@ if [[ $input_notebook == $pattern ]]; then
     exit 0
 fi
 
-echo "PROJ_NBS_RUN_OVERRIDE=${PROJ_NBS_RUN_OVERRIDE}"
 override_nbs="${PROJ_NBS_RUN_OVERRIDE:-0}"
-echo "override_nbs=${override_nbs}"
 
 # if second argument is a notebook, then it is the output
 # notebook filename
@@ -65,5 +67,8 @@ fi
 jupyter nbconvert --to notebook ${output_notebook} --output ${output_notebook##*/}
 
 if [ "${override_nbs}" != "0" ]; then
-    mv $output_notebook $input_notebook
+  mv $output_notebook $input_notebook
+  
+  # jupytext: synchronize notebook and text representation
+  jupytext --sync ${input_notebook}
 fi
