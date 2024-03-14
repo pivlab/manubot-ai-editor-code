@@ -16,10 +16,8 @@ import types
 from pathlib import PurePath
 
 # make all main config modules available at this level
-from pvae.conf import common, gtex, manuscript  # noqa: F401
+from proj.conf import common  # noqa: F401
 
-
-ENV_PREFIX = "PROJ_"
 
 def generate_env_vars(conf_dict):
     """
@@ -34,7 +32,7 @@ def generate_env_vars(conf_dict):
             continue
 
         if isinstance(var_value, (str, int, PurePath)):
-            new_var_name = f"{ENV_PREFIX}{var_name}"
+            new_var_name = f"{common.ENV_PREFIX}{var_name}"
             # if args.print_exports:
             yield new_var_name, str(var_value)
         elif isinstance(var_value, dict):
