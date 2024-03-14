@@ -21,7 +21,9 @@ RESULTS_DIR = Path(ROOT_DIR, "results").resolve()
 
 # N_JOBS
 options = [
-    m if (m := os.environ.get(f"{ENV_PREFIX}N_JOBS")) is not None and m.strip() != "" else None,
+    m
+    if (m := os.environ.get(f"{ENV_PREFIX}N_JOBS")) is not None and m.strip() != ""
+    else None,
     1,
 ]
 N_JOBS = next(int(opt) for opt in options if opt is not None)
