@@ -1,0 +1,21 @@
+name: manubot-ai-editor-code
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - ipython=8.*
+  - jupyterlab=4.1.*
+  - jupytext=1.16.*
+  - matplotlib=3.8.*
+  - nbconvert-core
+  - numpy=1.26.*
+  - pandas=2.2.*
+  - papermill=2.5.*
+  - pip
+  - python=3.11.*
+  - scipy=1.12.*
+  - seaborn=0.13.*
+  - tqdm=4.*
+  - pip:
+      - pygithub==2.2.*
+
