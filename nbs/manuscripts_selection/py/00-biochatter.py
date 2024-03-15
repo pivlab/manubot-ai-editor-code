@@ -73,8 +73,8 @@ print(pr_curr)
 # # Get file list
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-pr_files = list(pr.get_files())
-print(pr_files)
+pr_files = [f for f in pr.get_files() if f.filename.endswith(".md")]
+display(pr_files)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Get file content
