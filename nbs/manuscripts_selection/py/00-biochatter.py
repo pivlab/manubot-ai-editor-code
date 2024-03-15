@@ -16,32 +16,31 @@
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Description
 
-# %% [markdown] tags=[] editable=true slideshow={"slide_type": ""}
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # TODO
 
-# %% [markdown] tags=[] editable=true slideshow={"slide_type": ""}
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Modules
 
-# %% tags=[] editable=true slideshow={"slide_type": ""}
-import os
+# %% editable=true slideshow={"slide_type": ""} tags=[]
 from github import Github, Auth
 
 from proj import conf
 
-# %% [markdown] tags=[] editable=true slideshow={"slide_type": ""}
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Settings/paths
 
 # %% editable=true slideshow={"slide_type": ""} tags=["parameters"]
-REPO = "greenelab/manubot-gpt-manuscript"
-PR = 41
+REPO = "biocypher/biochatter-paper"
+PR = 9
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Get Repo
 
-# %% tags=[] editable=true slideshow={"slide_type": ""}
+# %% editable=true slideshow={"slide_type": ""} tags=[]
 auth = Auth.Token(conf.github.API_TOKEN)
 
-# %% tags=[] editable=true slideshow={"slide_type": ""}
+# %% editable=true slideshow={"slide_type": ""} tags=[]
 g = Github(auth=auth)
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
@@ -64,20 +63,35 @@ pr_commits[0].parents
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 pr_prev = pr_commits[0].parents[0].sha
-display(pr_prev)
+print(pr_prev)
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 pr_curr = pr_commits[0].sha
-display(pr_curr)
+print(pr_curr)
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# # Get file list
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+pr_files = list(pr.get_files())
+print(pr_files)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Get file content
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-print(repo.get_contents("content/01.abstract.md", pr_prev).decoded_content.decode("utf-8"))
+pr_filename = pr_files[0].filename
+print(pr_filename)
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-print(repo.get_contents("content/01.abstract.md", pr_curr).decoded_content.decode("utf-8"))
+print(
+    repo.get_contents(pr_filename, pr_prev).decoded_content.decode("utf-8")
+)
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+print(
+    repo.get_contents(pr_filename, pr_curr).decoded_content.decode("utf-8")
+)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Close connections
