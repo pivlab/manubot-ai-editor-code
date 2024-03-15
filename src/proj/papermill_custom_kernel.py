@@ -74,5 +74,5 @@ def run_papermill(input_notebook, output_notebook, parameters):
         stderr_file=sys.stderr,
         request_save_on_cell_execute=True,
         parameters=notebook_parameters,
-        kernel_manager_class="papermill_custom.IPCKernelManager",
+        kernel_manager_class="proj.papermill_custom_kernel.IPCKernelManager",
     )
