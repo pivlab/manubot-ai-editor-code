@@ -24,6 +24,17 @@ from langchain.prompts import (
 # from langchain.prompts import PromptTemplate
 
 
+def process_paragraph(paragraph_text: str | list) -> str:
+    """
+    Given a paragraph, it returned the same text without any leading or trailing
+    whitespaces, and joins the lines (separated with single or multiple newline
+    characters) with a single space.
+    """
+    if isinstance(paragraph_text, list):
+        paragraph_text = " ".join(paragraph_text)
+
+    return " ".join(paragraph_text.strip().split())
+
 def llm_pairwise(
     paragraph0: str,
     paragraph1: str,
