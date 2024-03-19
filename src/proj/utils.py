@@ -1,14 +1,12 @@
 import re
 import json
-from pathlib import Path
-import tempfile
-
-from langchain.globals import set_llm_cache
-from langchain.cache import SQLiteCache
 
 
 JSON_REGEX = re.compile(r"{.*?}")
 
+# from langchain.globals import set_llm_cache
+# from langchain.cache import SQLiteCache
+#
 # set_llm_cache(
 #     SQLiteCache(database_path=str(Path(tempfile.gettempdir()) / "langchain.db"))
 # )
@@ -44,7 +42,9 @@ def llm_pairwise(
             },
         )
     else:
-        model = ChatOllama(model=model_name, temperature=0.2, max_tokens=2000, top_p=1.0)
+        model = ChatOllama(
+            model=model_name, temperature=0.2, max_tokens=2000, top_p=1.0
+        )
 
     section_part = f"a paragraph from the {manuscript_section.capitalize()} section"
     if manuscript_section.lower() == "abstract":
