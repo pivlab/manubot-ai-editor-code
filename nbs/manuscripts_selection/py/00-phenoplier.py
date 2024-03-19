@@ -32,7 +32,7 @@ from proj import conf
 # # Settings/paths
 
 # %% editable=true slideshow={"slide_type": ""} tags=["parameters"]
-REPO = "pivlab/manubot-ai-editor-code-test-mutator-epistasis-manuscript"
+REPO = "pivlab/manubot-ai-editor-code-test-phenoplier-manuscript"
 # PR 2: gpt-3.5-turbo
 # PR 3: gpt-4-0125-preview
 PR = 3
@@ -83,7 +83,7 @@ display(pr_files)
 # # Get file content
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-pr_filename = pr_files[1].filename
+pr_filename = pr_files[2].filename
 display(pr_filename)
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]

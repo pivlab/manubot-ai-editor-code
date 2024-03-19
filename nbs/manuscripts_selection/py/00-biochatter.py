@@ -17,12 +17,13 @@
 # # Description
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# TODO
+# This notebook tests the PyGithub package to read a GitHub repository containing a Manubot-based manuscript.
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Modules
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
+from IPython.display import display
 from github import Github, Auth
 
 from proj import conf
@@ -31,8 +32,10 @@ from proj import conf
 # # Settings/paths
 
 # %% editable=true slideshow={"slide_type": ""} tags=["parameters"]
-REPO = "biocypher/biochatter-paper"
-PR = 9
+REPO = "pivlab/manubot-ai-editor-code-test-biochatter-manuscript"
+# PR 2: gpt-3.5-turbo
+# PR 3: gpt-4-0125-preview
+PR = 2
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Get Repo
@@ -84,14 +87,10 @@ pr_filename = pr_files[0].filename
 print(pr_filename)
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-print(
-    repo.get_contents(pr_filename, pr_prev).decoded_content.decode("utf-8")
-)
+print(repo.get_contents(pr_filename, pr_prev).decoded_content.decode("utf-8"))
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-print(
-    repo.get_contents(pr_filename, pr_curr).decoded_content.decode("utf-8")
-)
+print(repo.get_contents(pr_filename, pr_curr).decoded_content.decode("utf-8"))
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Close connections
