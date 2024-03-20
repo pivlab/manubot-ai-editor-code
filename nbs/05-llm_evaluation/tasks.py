@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Annotated
 
 from proj import conf
+from proj.utils import simplify_filename
 from pytask import Product, task
 
 MANUSCRIPT_REPOSITORIES = {
@@ -34,12 +35,13 @@ output_notebook_dir = input_notebook_dir / "output"
 output_notebook_dir.mkdir(exist_ok=True, parents=True)
 
 #
-# Reverse the paragraphs
+# Reverse the paragraphs (only for one of the manuscripts)
 #
 for llm_judge in LLM_JUDGES:
-    manuscript_pr_code = "reversed_paragraphs"
+    manuscript_code = "biochatter-manuscript"
+    manuscript_pr_code = f"{manuscript_code}-gpt-3.5-turbo--reversed"
     manuscript_pr_llm_judge_code = f"{manuscript_pr_code}--{llm_judge}"
-    task_id = f"run_reversed_llm_pairwise-{manuscript_pr_llm_judge_code}"
+    task_id = f"run_llm_pairwise-{manuscript_pr_llm_judge_code}"
 
     input_notebook_py_path = (
         input_notebook_dir
@@ -53,13 +55,15 @@ for llm_judge in LLM_JUDGES:
     output_notebook_path = (
         output_notebook_dir.name
         + os.sep
-        + input_notebook_name_template.format(
-            suffix=manuscript_pr_llm_judge_code, ext="ipynb"
+        + simplify_filename(
+            input_notebook_name_template.format(
+                suffix=manuscript_pr_llm_judge_code, ext="ipynb"
+            )
         )
     )
 
     @task(id=task_id)
-    def run_reversed_llm_pairwise(
+    def run_llm_pairwise(
         input_notebook_py_path: Path = input_notebook_py_path,
         output_notebook_path: str = output_notebook_path,
         repository: str = "None",
@@ -69,7 +73,8 @@ for llm_judge in LLM_JUDGES:
             / "biochatter-manuscript--gpt-3.5-turbo--reversed.pkl"
         ),
         output_file: Annotated[Path, Product] = (
-            conf.common.LLM_PAIRWISE_DIR / f"{manuscript_pr_llm_judge_code}.pkl"
+            conf.common.LLM_PAIRWISE_DIR
+            / simplify_filename(f"{manuscript_pr_llm_judge_code}.pkl")
         ),
     ) -> None:
         input_notebook_path = (
@@ -115,9 +120,11 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
             output_notebook_path = (
                 output_notebook_dir.name
                 + os.sep
-                + input_notebook_name_template.format(
-                    suffix=manuscript_pr_llm_judge_code,
-                    ext="ipynb",
+                + simplify_filename(
+                    input_notebook_name_template.format(
+                        suffix=manuscript_pr_llm_judge_code,
+                        ext="ipynb",
+                    )
                 )
             )
 
@@ -128,7 +135,8 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
                 repository: str = repo,
                 input_file: Path = input_file,
                 output_file: Annotated[Path, Product] = (
-                    conf.common.LLM_PAIRWISE_DIR / f"{manuscript_pr_llm_judge_code}.pkl"
+                    conf.common.LLM_PAIRWISE_DIR
+                    / simplify_filename(f"{manuscript_pr_llm_judge_code}.pkl")
                 ),
                 llm_judge: str = llm_judge,
             ) -> None:

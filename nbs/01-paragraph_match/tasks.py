@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Annotated
 
 from proj import conf
+from proj.utils import simplify_filename
 from pytask import Product
 
 
@@ -11,7 +12,8 @@ def task_run_paragraph_match_biochatter_gpt35(
         conf.common.NBS_DIR / "01-paragraph_match/py/00-biochatter-gpt35-par_match.py"
     ),
     output_file: Annotated[Path, Product] = (
-        conf.common.PARAGRAPH_MATCH_DIR / "biochatter-manuscript--gpt-3.5-turbo.pkl"
+        conf.common.PARAGRAPH_MATCH_DIR
+        / simplify_filename("biochatter-manuscript--gpt-3.5-turbo.pkl")
     ),
 ) -> None:
     notebook_path = (
@@ -37,7 +39,7 @@ def task_reverse_paragraph_match_biochatter_gpt35(
     ),
     output_file: Annotated[Path, Product] = (
         conf.common.PARAGRAPH_MATCH_DIR
-        / "biochatter-manuscript--gpt-3.5-turbo--reversed.pkl"
+        / simplify_filename("biochatter-manuscript--gpt-3.5-turbo--reversed.pkl")
     ),
 ) -> None:
     notebook_path = (
@@ -59,7 +61,8 @@ def task_run_paragraph_match_ccc_gpt35(
         conf.common.NBS_DIR / "01-paragraph_match/py/05-ccc-gpt35-par_match.py"
     ),
     output_file: Annotated[Path, Product] = (
-        conf.common.PARAGRAPH_MATCH_DIR / "ccc-manuscript--gpt-3.5-turbo.pkl"
+        conf.common.PARAGRAPH_MATCH_DIR
+        / simplify_filename("ccc-manuscript--gpt-3.5-turbo.pkl")
     ),
 ) -> None:
     notebook_path = (

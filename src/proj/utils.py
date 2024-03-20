@@ -12,6 +12,16 @@ from langchain_community.chat_models import ChatOllama
 from langchain_openai import ChatOpenAI
 
 
+def simplify_filename(filename: str) -> str:
+    """
+    Given a filename, it returns a simplified version of it by removing
+    special characters and spaces, and converting it to lowercase.
+    """
+    return "".join(
+        c if c.isalnum() or c in ("-", ".") else "_" for c in filename.lower()
+    )
+
+
 def process_paragraph(paragraph_text: str | list) -> str:
     """
     Given a paragraph, it returned the same text without any leading or trailing
