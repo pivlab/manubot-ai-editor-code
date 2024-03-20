@@ -6,10 +6,6 @@ The manuscript repository is at
 
 ### Conda environment
 
-You can two options to setup the conda environment: 1) local environment or 2) Docker container.
-
-#### Option 1: local environment
-
 1. Install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or Anaconda.
 
 1. Install main Python environment (allows to run most steps):
@@ -30,9 +26,30 @@ You can two options to setup the conda environment: 1) local environment or 2) D
     pip install -e .
     ```
 
-#### Option 2: Docker container
+### Ollama
 
-(coming soon)
+1. Install [Ollama](https://ollama.ai/). The latest version we tested is [v0.1.18](https://github.com/jmorganca/ollama/releases/tag/v0.1.18), which in Linux (amd64) you can install with:
+   ```bash
+   sudo curl -L https://github.com/jmorganca/ollama/releases/download/v0.1.18/ollama-linux-amd64 -o /usr/bin/ollama
+   sudo chmod +x /usr/bin/ollama
+   ```
+1. Start Ollama in a different terminal (no need to activate the conda environment), if not [already running automatically](https://github.com/jmorganca/ollama/issues/707):
+   ```bash
+   ollama serve
+   ```
+1. Pull Mistral models:
+   ```bash
+   ollama pull mistral:7b-instruct-fp16
+   ```
+
+### Configuration
+
+Open file `.env` and add the following keys with the correct values:
+
+```env
+PROJ_GITHUB_AUTH_TOKEN="..."
+OPENAI_API_KEY="..."
+```
 
 ## Run analysis
 
