@@ -39,7 +39,7 @@ output_notebook_dir.mkdir(exist_ok=True, parents=True)
 #
 for llm_judge in LLM_JUDGES:
     manuscript_code = "biochatter-manuscript"
-    manuscript_pr_code = f"{manuscript_code}-gpt-3.5-turbo--reversed"
+    manuscript_pr_code = f"{manuscript_code}--gpt-3.5-turbo--reversed"
     manuscript_pr_llm_judge_code = f"{manuscript_pr_code}--{llm_judge}"
     task_id = f"run_llm_pairwise-{manuscript_pr_llm_judge_code}"
 
