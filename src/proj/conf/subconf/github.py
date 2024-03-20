@@ -1,6 +1,7 @@
 """
 Contains configuration to use GitHub API.
 """
+
 import os
 from pathlib import Path
 

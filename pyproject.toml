@@ -19,11 +19,12 @@ line-length = 88
 
 [tool.ruff]
 target-version = "py38"
-ignore = [
+lint.ignore = [
     "E501",  # line-too-long (black should handle)
+    "E303",  # too many blank lines
 ]
 line-length = 88
-select = [
+lint.select = [
     "B",  # flake8-bugbear
     "C",  # flake8-comprehensions
     "C90",  # mccabe
@@ -34,8 +35,12 @@ select = [
     "W",  # pycode warnings
 ]
 
-[tool.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 19
+
+[tool.ruff.lint.per-file-ignores]
+"nbs/**/*.ipynb" = ["B018"]
+"nbs/**/*.py" = ["B018"]
 
 [tool.pytask.ini_options]
 task_files = "task_*.py"

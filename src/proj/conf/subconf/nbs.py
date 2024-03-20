@@ -1,6 +1,7 @@
 """
 Contains configuration entries related to Jupyter Notebooks.
 """
+
 import os
 from pathlib import Path
 
