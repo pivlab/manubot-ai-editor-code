@@ -17,17 +17,18 @@
 # # Description
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# This notebook TODO
+# This notebook is a template notebook that is intended to be run across different parameters.
+#
+# TODO
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Modules
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-from IPython.display import display
 import pandas as pd
-from langchain.globals import set_llm_cache
+from IPython.display import display
 from langchain.cache import SQLiteCache
-
+from langchain.globals import set_llm_cache
 from proj import conf
 from proj.utils import llm_pairwise
 
@@ -35,40 +36,24 @@ from proj.utils import llm_pairwise
 # # Settings/paths
 
 # %% editable=true slideshow={"slide_type": ""} tags=["parameters"]
-REPO = "pivlab/manubot-ai-editor-code-test-biochatter-manuscript"
-# LLM_JUDGE = "openai:gpt-4-turbo-preview"
-# LLM_JUDGE = "openai:gpt-4"
-# LLM_JUDGE = "openai:gpt-3.5-turbo"
-LLM_JUDGE = "mistral:7b-instruct-fp16"
-N_REPS = 10
+# Input manuscript
+REPO = None
 
-# Model parameters
-TEMPERATURE = 0.5
+INPUT_FILE = None
+OUTPUT_FILE = None
+
+# Model and its parameters
+LLM_JUDGE = None
+TEMPERATURE = None
 MAX_TOKENS = 2000
 SEED_INIT = 0
 
-# %% editable=true slideshow={"slide_type": ""} tags=[]
-MANUSCRIPT_CODE = REPO.split("-test-")[1]
-display(MANUSCRIPT_CODE)
+# Evaluation parameters
+N_REPS = None
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-INPUT_FILE = (
-    conf.common.RESULTS_DIR / "paragraph_match" / MANUSCRIPT_CODE
-).with_suffix(".pkl")
-assert INPUT_FILE.exists()
-display(INPUT_FILE)
-
-# %% editable=true slideshow={"slide_type": ""} tags=[]
-OUTPUT_FILE = (conf.common.RESULTS_DIR / "llm_pairwise" / MANUSCRIPT_CODE).with_suffix(
-    ".pkl"
-)
-OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-display(OUTPUT_FILE)
-
-# %% editable=true slideshow={"slide_type": ""} tags=[]
-BASE_LANGCHAIN_CACHE_DIR = conf.common.RESULTS_DIR / "llm_cache"
-BASE_LANGCHAIN_CACHE_DIR.mkdir(parents=True, exist_ok=True)
-display(BASE_LANGCHAIN_CACHE_DIR)
+conf.common.LLM_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+display(conf.common.LLM_CACHE_DIR)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Load paragraphs
@@ -127,7 +112,7 @@ results = []
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 for rep_idx in range(N_REPS):
     # we cache prompt/results by repetition
-    output_cache_file = BASE_LANGCHAIN_CACHE_DIR / f"rep{rep_idx}.db"
+    output_cache_file = conf.common.LLM_CACHE_DIR / f"rep{rep_idx}.db"
     set_llm_cache(SQLiteCache(database_path=str(output_cache_file)))
 
     print(f"{str(rep_idx).zfill(2)} ({output_cache_file.name}): ", end="", flush=True)
