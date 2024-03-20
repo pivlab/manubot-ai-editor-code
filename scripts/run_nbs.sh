@@ -4,6 +4,7 @@ if [ -f .env ]; then
   source .env
   set +o allexport
 fi
+set -e
 
 # This script runs a Jupyter notebook (.ipynb) from the command line using
 # papermill.

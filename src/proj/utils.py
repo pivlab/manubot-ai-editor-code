@@ -29,10 +29,13 @@ def llm_pairwise(
     paragraph1: str,
     manuscript_section: str,
     model_name: str = "mistral:7b-instruct-fp16",
-    model_params: dict = {},
+    model_params: dict = None,
     max_attemps: int = 3,
     verbose: bool = False,
 ) -> dict:
+    if model_params is None:
+        model_params = {}
+
     default_model_kwargs = {
         "temperature": model_params.get("temperature", 0.5),
         "max_tokens": model_params.get("max_tokens", 2000),
