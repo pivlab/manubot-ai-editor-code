@@ -34,6 +34,14 @@ You can two options to setup the conda environment: 1) local environment or 2) D
 
 (coming soon)
 
+## Run analysis
+
+To run all the analysis:
+
+```bash
+pytask
+```
+
 ## Development
 
 These are steps intended to be used by project mantainers.
