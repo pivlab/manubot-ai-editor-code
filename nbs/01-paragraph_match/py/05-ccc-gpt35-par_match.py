@@ -39,16 +39,17 @@ REPO = "pivlab/manubot-ai-editor-code-test-ccc-manuscript"
 PR = (2, "gpt-3.5-turbo")
 
 OUTPUT_FILE_PATH = None
-
-# %% tags=["injected-parameters"]
-# Parameters
-OUTPUT_FILE_PATH = "/home/miltondp/projects/others/manubot/manubot-ai-editor-code/base/results/paragraph_match/ccc-manuscript--gpt-3.5-turbo.pkl"
-
+REVERSED_OUTPUT_FILE_PATH = None
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 OUTPUT_FILE_PATH = Path(OUTPUT_FILE_PATH).resolve()
 OUTPUT_FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
 display(OUTPUT_FILE_PATH)
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+REVERSED_OUTPUT_FILE_PATH = Path(REVERSED_OUTPUT_FILE_PATH).resolve()
+REVERSED_OUTPUT_FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
+display(REVERSED_OUTPUT_FILE_PATH)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Get Repo
@@ -96,7 +97,6 @@ display(pr_files)
 # # Sections
 
 # %% tags=[]
-# TODO: explain variable
 paragraph_matches = []
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
@@ -1417,5 +1417,25 @@ df.head()
 
 # %% tags=[]
 df.to_pickle(OUTPUT_FILE_PATH)
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# # Reverse original/modified columns
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+df_reversed = df.rename(columns={"original": "modified2"}).rename(
+    columns={"modified": "original", "modified2": "modified"}
+)
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+df_reversed.shape
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+df_reversed.head()
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ## Save
+
+# %% tags=[]
+df_reversed.to_pickle(REVERSED_OUTPUT_FILE_PATH)
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
