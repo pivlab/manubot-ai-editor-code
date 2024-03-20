@@ -41,6 +41,12 @@ PR = (2, "gpt-3.5-turbo")
 OUTPUT_FILE_PATH = None
 REVERSED_OUTPUT_FILE_PATH = None
 
+# %% tags=["injected-parameters"]
+# Parameters
+OUTPUT_FILE_PATH = "/home/miltondp/projects/others/manubot/manubot-ai-editor-code/base/results/paragraph_match/ccc-manuscript--gpt-3.5-turbo.pkl"
+REVERSED_OUTPUT_FILE_PATH = "/home/miltondp/projects/others/manubot/manubot-ai-editor-code/base/results/paragraph_match/ccc-manuscript--gpt-3.5-turbo--reversed.pkl"
+
+
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 OUTPUT_FILE_PATH = Path(OUTPUT_FILE_PATH).resolve()
 OUTPUT_FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
