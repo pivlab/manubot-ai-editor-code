@@ -23,9 +23,8 @@
 # # Modules
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
+from github import Auth, Github
 from IPython.display import display
-from github import Github, Auth
-
 from proj import conf
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]

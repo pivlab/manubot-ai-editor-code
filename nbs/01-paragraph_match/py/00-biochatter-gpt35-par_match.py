@@ -45,7 +45,6 @@ OUTPUT_FILE_PATH = None
 # Parameters
 OUTPUT_FILE_PATH = "/home/miltondp/projects/others/manubot/manubot-ai-editor-code/base/results/paragraph_match/biochatter-manuscript--gpt-3.5-turbo.pkl"
 
-
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 OUTPUT_FILE_PATH = Path(OUTPUT_FILE_PATH).resolve()
 OUTPUT_FILE_PATH.parent.mkdir(parents=True, exist_ok=True)

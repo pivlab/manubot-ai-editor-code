@@ -1,15 +1,15 @@
 import json
 
 from langchain.chains import LLMChain
-from langchain_community.chat_models import ChatOllama
-from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import (
     ChatPromptTemplate,
+    HumanMessagePromptTemplate,
     MessagesPlaceholder,
     SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
 )
+from langchain_community.chat_models import ChatOllama
+from langchain_openai import ChatOpenAI
 
 
 def process_paragraph(paragraph_text: str | list) -> str:
