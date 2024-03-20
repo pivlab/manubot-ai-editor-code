@@ -157,9 +157,25 @@ winner_matchings = {
     "tie": "0",
 }
 
-# %% editable=true slideshow={"slide_type": ""} tags=[]
+# %%
 df_results = pd.DataFrame(results)
-df_results["winner_score"] = df_results["winner"].replace(winner_matchings).apply(float)
+
+# %%
+df_results.shape
+
+# %%
+df_results.head()
+
+# %%
+df_results = df_results[df_results["winner"].isin(winner_matchings.keys())]
+
+# %%
+df_results.shape
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+df_results = df_results.assign(
+    winner_score=df_results["winner"].replace(winner_matchings).apply(float)
+)
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 df_results.shape

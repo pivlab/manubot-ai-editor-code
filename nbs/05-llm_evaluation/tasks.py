@@ -1,3 +1,4 @@
+import os
 import subprocess
 from pathlib import Path
 from typing import Annotated
@@ -23,9 +24,67 @@ MAX_TOKENS = 2000
 SEED_INIT = 0
 
 # Evaluation parameters
-N_REPS = 3
+N_REPS = 10
+
+# Paths
+input_notebook_dir = conf.common.NBS_DIR / "05-llm_evaluation"
+input_notebook_name_template = "00-llm_pairwise-{suffix}.ipynb"
+
+output_notebook_dir = input_notebook_dir / "output"
+output_notebook_dir.mkdir(exist_ok=True, parents=True)
+
+#
+# Reverse the paragraphs
+#
+for llm_judge in LLM_JUDGES:
+    manuscript_pr_code = "reversed_paragraphs"
+    manuscript_pr_llm_judge_code = f"{manuscript_pr_code}--{llm_judge}"
+    task_id = f"run_reversed_llm_pairwise-{manuscript_pr_llm_judge_code}"
+
+    input_notebook_path = input_notebook_dir / input_notebook_name_template.format(
+        suffix="template"
+    )
+
+    output_notebook_path = (
+        output_notebook_dir.name
+        + os.sep
+        + input_notebook_name_template.format(suffix=manuscript_pr_llm_judge_code)
+    )
+
+    @task(id=task_id)
+    def run_reversed_llm_pairwise(
+        input_notebook_path: Path = input_notebook_path,
+        output_notebook_path: str = output_notebook_path,
+        repository: str = "None",
+        llm_judge: str = llm_judge,
+        input_file: Path = (
+            conf.common.PARAGRAPH_MATCH_DIR
+            / "biochatter-manuscript--gpt-3.5-turbo--reversed.pkl"
+        ),
+        output_file: Annotated[Path, Product] = (
+            conf.common.LLM_PAIRWISE_DIR / f"{manuscript_pr_llm_judge_code}.pkl"
+        ),
+    ) -> None:
+        command = f"""
+        bash {conf.common.CODE_DIR}/scripts/run_nbs.sh \
+            {str(input_notebook_path)} \
+            {str(output_notebook_path)} \
+            -p REPO {repository} \
+            -p INPUT_FILE {str(input_file)} \
+            -p OUTPUT_FILE {str(output_file)} \
+            -p LLM_JUDGE {llm_judge} \
+            -p TEMPERATURE {TEMPERATURE} \
+            -p MAX_TOKENS {MAX_TOKENS} \
+            -p SEED_INIT {SEED_INIT} \
+            -p N_REPS {N_REPS}
+        """.strip()
+
+        subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE)
 
 
+#
+# Run the LLM pairwise comparison
+#
 for repo, prs in MANUSCRIPT_REPOSITORIES.items():
     for pr_model in prs.keys():
         manuscript_pr_code = f"{repo.split('-test-')[1]}--{pr_model}"
@@ -35,27 +94,23 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
             manuscript_pr_llm_judge_code = f"{manuscript_pr_code}--{llm_judge}"
             task_id = f"run_llm_pairwise-{manuscript_pr_llm_judge_code}"
 
-            input_notebook_dir = conf.common.NBS_DIR / "05-llm_evaluation"
-            input_notebook_name_template = "00-llm_pairwise-{suffix}.ipynb"
             input_notebook_path = (
                 input_notebook_dir
                 / input_notebook_name_template.format(suffix="template")
             )
 
-            output_notebook_dir = input_notebook_dir / "output"
-            output_notebook_dir.mkdir(exist_ok=True, parents=True)
             output_notebook_path = (
                 output_notebook_dir.name
-                + "/"
+                + os.sep
                 + input_notebook_name_template.format(
-                    suffix=f"{manuscript_pr_llm_judge_code}"
+                    suffix=manuscript_pr_llm_judge_code
                 )
             )
 
             @task(id=task_id)
             def run_llm_pairwise(
                 input_notebook_path: Path = input_notebook_path,
-                output_notebook_path: Path = output_notebook_path,
+                output_notebook_path: str = output_notebook_path,
                 repository: str = repo,
                 input_file: Path = input_file,
                 output_file: Annotated[Path, Product] = (

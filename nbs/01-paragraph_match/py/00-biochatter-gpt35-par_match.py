@@ -37,7 +37,6 @@ from proj.utils import process_paragraph
 # %% editable=true slideshow={"slide_type": ""} tags=["parameters"]
 REPO = "pivlab/manubot-ai-editor-code-test-biochatter-manuscript"
 PR = (2, "gpt-3.5-turbo")
-# PR = (3, "gpt-4-0125-preview")
 
 OUTPUT_FILE_PATH = None
 
