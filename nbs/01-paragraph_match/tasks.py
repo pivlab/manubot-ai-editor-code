@@ -7,13 +7,17 @@ from pytask import Product
 
 
 def task_run_paragraph_match_biochatter_gpt35(
-    notebook_path: Path = (
-        conf.common.NBS_DIR / "01-paragraph_match/00-biochatter-gpt35-par_match.ipynb"
+    notebook_py_path: Path = (
+        conf.common.NBS_DIR / "01-paragraph_match/py/00-biochatter-gpt35-par_match.py"
     ),
     output_file: Annotated[Path, Product] = (
         conf.common.PARAGRAPH_MATCH_DIR / "biochatter-manuscript--gpt-3.5-turbo.pkl"
     ),
 ) -> None:
+    notebook_path = (
+        notebook_py_path.parent.parent / notebook_py_path.with_suffix(".ipynb").name
+    )
+
     command = f"""
     bash {conf.common.CODE_DIR}/scripts/run_nbs.sh \
         {notebook_path} \
@@ -24,9 +28,9 @@ def task_run_paragraph_match_biochatter_gpt35(
 
 
 def task_reverse_paragraph_match_biochatter_gpt35(
-    notebook_path: Path = (
+    notebook_py_path: Path = (
         conf.common.NBS_DIR
-        / "01-paragraph_match/01-biochatter-gpt35-par_match-reversed.ipynb"
+        / "01-paragraph_match/py/01-biochatter-gpt35-par_match-reversed.py"
     ),
     input_file: Path = (
         conf.common.PARAGRAPH_MATCH_DIR / "biochatter-manuscript--gpt-3.5-turbo.pkl"
@@ -36,6 +40,10 @@ def task_reverse_paragraph_match_biochatter_gpt35(
         / "biochatter-manuscript--gpt-3.5-turbo--reversed.pkl"
     ),
 ) -> None:
+    notebook_path = (
+        notebook_py_path.parent.parent / notebook_py_path.with_suffix(".ipynb").name
+    )
+
     command = f"""
     bash {conf.common.CODE_DIR}/scripts/run_nbs.sh \
         {notebook_path} \

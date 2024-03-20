@@ -28,7 +28,7 @@ N_REPS = 10
 
 # Paths
 input_notebook_dir = conf.common.NBS_DIR / "05-llm_evaluation"
-input_notebook_name_template = "00-llm_pairwise-{suffix}.ipynb"
+input_notebook_name_template = "00-llm_pairwise-{suffix}.{ext}"
 
 output_notebook_dir = input_notebook_dir / "output"
 output_notebook_dir.mkdir(exist_ok=True, parents=True)
@@ -41,19 +41,26 @@ for llm_judge in LLM_JUDGES:
     manuscript_pr_llm_judge_code = f"{manuscript_pr_code}--{llm_judge}"
     task_id = f"run_reversed_llm_pairwise-{manuscript_pr_llm_judge_code}"
 
-    input_notebook_path = input_notebook_dir / input_notebook_name_template.format(
-        suffix="template"
+    input_notebook_py_path = (
+        input_notebook_dir
+        / "py"
+        / input_notebook_name_template.format(
+            suffix="template",
+            ext="py",
+        )
     )
 
     output_notebook_path = (
         output_notebook_dir.name
         + os.sep
-        + input_notebook_name_template.format(suffix=manuscript_pr_llm_judge_code)
+        + input_notebook_name_template.format(
+            suffix=manuscript_pr_llm_judge_code, ext="ipynb"
+        )
     )
 
     @task(id=task_id)
     def run_reversed_llm_pairwise(
-        input_notebook_path: Path = input_notebook_path,
+        input_notebook_py_path: Path = input_notebook_py_path,
         output_notebook_path: str = output_notebook_path,
         repository: str = "None",
         llm_judge: str = llm_judge,
@@ -65,6 +72,11 @@ for llm_judge in LLM_JUDGES:
             conf.common.LLM_PAIRWISE_DIR / f"{manuscript_pr_llm_judge_code}.pkl"
         ),
     ) -> None:
+        input_notebook_path = (
+            input_notebook_py_path.parent.parent
+            / input_notebook_py_path.with_suffix(".ipynb").name
+        )
+
         command = f"""
         bash {conf.common.CODE_DIR}/scripts/run_nbs.sh \
             {str(input_notebook_path)} \
@@ -94,22 +106,24 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
             manuscript_pr_llm_judge_code = f"{manuscript_pr_code}--{llm_judge}"
             task_id = f"run_llm_pairwise-{manuscript_pr_llm_judge_code}"
 
-            input_notebook_path = (
+            input_notebook_py_path = (
                 input_notebook_dir
-                / input_notebook_name_template.format(suffix="template")
+                / "py"
+                / input_notebook_name_template.format(suffix="template", ext="py")
             )
 
             output_notebook_path = (
                 output_notebook_dir.name
                 + os.sep
                 + input_notebook_name_template.format(
-                    suffix=manuscript_pr_llm_judge_code
+                    suffix=manuscript_pr_llm_judge_code,
+                    ext="ipynb",
                 )
             )
 
             @task(id=task_id)
             def run_llm_pairwise(
-                input_notebook_path: Path = input_notebook_path,
+                input_notebook_py_path: Path = input_notebook_py_path,
                 output_notebook_path: str = output_notebook_path,
                 repository: str = repo,
                 input_file: Path = input_file,
@@ -118,6 +132,11 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
                 ),
                 llm_judge: str = llm_judge,
             ) -> None:
+                input_notebook_path = (
+                    input_notebook_py_path.parent.parent
+                    / input_notebook_py_path.with_suffix(".ipynb").name
+                )
+
                 command = f"""
                 bash {conf.common.CODE_DIR}/scripts/run_nbs.sh \
                     {str(input_notebook_path)} \
