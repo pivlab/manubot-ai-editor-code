@@ -55,17 +55,23 @@ def llm_pairwise(
         }
         model = ChatOllama(**params)
 
-    section_part = f"a paragraph from the {manuscript_section.capitalize()} section"
+    par0_id = "Paragraph A"
+    par1_id = "Paragraph 1"
+
+    section_part = f"the {manuscript_section.capitalize()} section"
     if manuscript_section.lower() == "abstract":
         section_part = "the Abstract"
 
-    system_message = f"You are an expert copyeditor with ample experience in scientific writing. You are assessing the quality of two versions of {section_part} of a scientific article."
-    comment_on_paragraph_prompt = "Read the following paragraph and write a list with your comments on the following areas: 1) has a clear sentence structure, 2) is easy to follow, 3) is correct in grammar, 4) has no spelling errors, 5) potential areas of improvement.\n\n{text}"
-    judge_prompt = 'Act as an impartial judge and evaluate the quality of Paragraph 1 and Paragraph A. Your evaluation should consider whether the text has a clear sentence structure, is easy to follow, is correct in grammar, and has no spelling errors. Compare the two versions and select the best only if one of them is clearly better than the other; if both versions are essentially similar, then it is a tie. Be as objective as possible. Provide the output in JSON format with the following schema: {"best": string, "rationale": string}, where "best" can have values of "Paragraph 1", "Paragraph A", or "tie".'
+    system_message = f"You are an expert copyeditor with ample experience in scientific writing. You are assessing the quality of two versions of a paragraph from {section_part} of a scientific article."
+    comment_on_paragraph_prompt = "Evaluate the quality of the following paragraph by writing a list with positive (if any) and/or negative (if any) aspects on the following areas: 1) has a clear sentence structure, 2) is easy to follow, 3) is correct in grammar, 4) has no spelling errors.\n\n{text}"
+    judge_prompt = (
+        'Now, act as an impartial judge and evaluate the quality of these two paragraphs. Your evaluation must only consider the previous areas you commented on above. Compare the two versions and select the best only if one of them is clearly better than the other; if both versions are similar, then it is a tie. Avoid any position biases and ensure that the order in which the paragraphs were presented does not influence your decision. Do not favor certain paragraph identifiers. Be as objective as possible. Provide the output in JSON format with the following schema: {"best": string, "rationale": string}, where "best" can only have the following values: '
+        + f'"{par0_id}", "{par1_id}", or "tie".'
+    )
 
     messages = [
-        comment_on_paragraph_prompt.format(text=f"Paragraph A: {paragraph0}"),
-        comment_on_paragraph_prompt.format(text=f"Paragraph 1: {paragraph1}"),
+        comment_on_paragraph_prompt.format(text=f"{par0_id}: {paragraph0}"),
+        comment_on_paragraph_prompt.format(text=f"{par1_id}: {paragraph1}"),
         judge_prompt,
     ]
 
