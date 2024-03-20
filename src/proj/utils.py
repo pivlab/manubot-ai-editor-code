@@ -108,17 +108,7 @@ def llm_pairwise(
                 r = conversation.invoke({"question": m})
                 responses.append(r["text"])
 
-            t = (
-                responses[-1]
-                .strip()
-                .replace(": True", ": true")
-                .replace(": False", ": false")
-            )
-
-            # try to capture a JSON substring
-            # tjson = JSON_REGEX.search(t)
-            # if tjson:
-            #     t = tjson.group(0)
+            t = responses[-1].strip()
 
             t_json_obj = json.loads(t)
         except json.JSONDecodeError:
