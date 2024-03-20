@@ -1,15 +1,4 @@
-import re
 import json
-
-
-JSON_REGEX = re.compile(r"{.*?}")
-
-# from langchain.globals import set_llm_cache
-# from langchain.cache import SQLiteCache
-#
-# set_llm_cache(
-#     SQLiteCache(database_path=str(Path(tempfile.gettempdir()) / "langchain.db"))
-# )
 
 from langchain.chains import LLMChain
 from langchain_community.chat_models import ChatOllama
@@ -21,7 +10,6 @@ from langchain.prompts import (
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
-# from langchain.prompts import PromptTemplate
 
 
 def process_paragraph(paragraph_text: str | list) -> str:
@@ -35,27 +23,34 @@ def process_paragraph(paragraph_text: str | list) -> str:
 
     return " ".join(paragraph_text.strip().split())
 
+
 def llm_pairwise(
     paragraph0: str,
     paragraph1: str,
     manuscript_section: str,
     model_name: str = "mistral:7b-instruct-fp16",
+    model_params: dict = {},
     max_attemps: int = 3,
     verbose: bool = False,
-) -> str:
+) -> dict:
+    default_model_kwargs = {
+        "temperature": model_params.get("temperature", 0.5),
+        "max_tokens": model_params.get("max_tokens", 2000),
+        "model_kwargs": model_params.get("model_kwargs", {}),
+    }
+
     if model_name.startswith("openai:"):
-        model = ChatOpenAI(
-            model_name=model_name[7:],
-            temperature=0.2,
-            max_tokens=2000,
-            model_kwargs={
-                "top_p": 1.0,
-            },
-        )
+        params = {
+            "model_name": model_name[7:],
+            **default_model_kwargs,
+        }
+        model = ChatOpenAI(**params)
     else:
-        model = ChatOllama(
-            model=model_name, temperature=0.2, max_tokens=2000, top_p=1.0
-        )
+        params = {
+            "model": model_name,
+            **default_model_kwargs,
+        }
+        model = ChatOllama(**params)
 
     section_part = f"a paragraph from the {manuscript_section.capitalize()} section"
     if manuscript_section.lower() == "abstract":
@@ -89,6 +84,7 @@ def llm_pairwise(
     )
 
     t = None
+    t_json_obj = None
     count = 0
     while t is None and count < max_attemps:
         responses = []
@@ -117,18 +113,19 @@ def llm_pairwise(
             )
 
             # try to capture a JSON substring
-            tjson = JSON_REGEX.search(t)
-            if tjson:
-                t = tjson.group(0)
+            # tjson = JSON_REGEX.search(t)
+            # if tjson:
+            #     t = tjson.group(0)
 
-            json.loads(t)
+            t_json_obj = json.loads(t)
         except json.JSONDecodeError:
             t = None
+            t_json_obj = None
         finally:
             count += 1
 
     assert (
-        t is not None
+        t_json_obj is not None
     ), f"Failed to get a response from the chatbot ({count} attempts)"
 
-    return t.strip()
+    return t_json_obj
