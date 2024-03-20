@@ -70,5 +70,5 @@ if [ "${override_nbs}" != "0" ]; then
   mv $output_notebook $input_notebook
   
   # jupytext: synchronize notebook and text representation
-  jupytext --sync ${input_notebook}
+  jupytext --sync ${input_notebook} --check 'ruff format {}'
 fi

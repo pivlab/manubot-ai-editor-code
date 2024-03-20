@@ -23,19 +23,17 @@ repos:
     hooks:
       # Run the linter.
       - id: ruff
-        types_or: [ python, pyi, jupyter ]
+        types_or: [ python, pyi ]
         args: [ --fix ]
       # Run the formatter.
       - id: ruff-format
-        types_or: [ python, pyi, jupyter ]
-  - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.3.2.9025
-    hooks:
-      - id: style-files
+        types_or: [ python, pyi ]
   - repo: https://github.com/mwouts/jupytext
     rev: v1.15.2
     hooks:
       - id: jupytext
         entry: jupytext
         types_or: [ jupyter ]
-        args: [ --sync ]
+        args: [--sync, --check, 'ruff format {}']
+        additional_dependencies:
+          - ruff==0.3.3

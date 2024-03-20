@@ -21,7 +21,6 @@ line-length = 88
 target-version = "py38"
 lint.ignore = [
     "E501",  # line-too-long (black should handle)
-    "E303",  # too many blank lines
 ]
 line-length = 88
 lint.select = [
