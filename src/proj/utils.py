@@ -41,6 +41,7 @@ def llm_pairwise(
     model_name: str = "mistral:7b-instruct-fp16",
     model_params: dict = None,
     max_attemps: int = 3,
+    throw_if_failed: bool = True,
     verbose: bool = False,
 ) -> dict:
     if model_params is None:
@@ -133,8 +134,15 @@ def llm_pairwise(
         finally:
             count += 1
 
-    assert (
-        t_json_obj is not None
-    ), f"Failed to get a response from the chatbot ({count} attempts)"
+    if throw_if_failed:
+        assert (
+            t_json_obj is not None
+        ), f"Failed to get a response from the chatbot ({count} attempts)"
+    else:
+        if t_json_obj is None:
+            t_json_obj = {
+                "best": "Failed",
+                "rationale": "Failed to get a response from the chatbot",
+            }
 
     return t_json_obj

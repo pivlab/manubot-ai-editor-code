@@ -50,6 +50,7 @@ SEED_INIT = 0
 
 # Evaluation parameters
 N_REPS = None
+THROW_IF_FAILED = False
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 conf.common.LLM_CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -132,6 +133,7 @@ for rep_idx in range(N_REPS):
                     "seed": SEED_INIT + rep_idx,
                 },
             },
+            throw_if_failed=THROW_IF_FAILED,
             verbose=False,
         )
 
