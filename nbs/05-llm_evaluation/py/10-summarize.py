@@ -122,11 +122,21 @@ df.loc[df["paragraphs_reversed"], "winner_score"] = -1 * df.loc[df["paragraphs_r
 # ## Rename values
 
 # %%
+df["llm_judge"].unique()
+
+# %%
 models_rename = {
-    "gpt-3.5-turbo": "GPT 3.5 Turbo",
+    "openai_gpt-4": "GPT-4",
+    "openai_gpt-4-turbo-preview": "GPT-4 Turbo",
     "openai_gpt-3.5-turbo": "GPT 3.5 Turbo",
     "mistral_7b-instruct-fp16": "Mistral 7b",
 }
+
+# %%
+df["manuscript_code"].unique()
+
+# %%
+df["paragraph_section"].unique()
 
 # %%
 df = df.replace({
