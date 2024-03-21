@@ -111,7 +111,7 @@ def llm_pairwise(
 
         try:
             for m in messages:
-                if isinstance(model, ChatOpenAI):
+                if isinstance(model, ChatOpenAI) and "turbo" in model.model_name:
                     if "JSON" in m:
                         model.model_kwargs["response_format"] = {"type": "json_object"}
                     elif "response_format" in model.model_kwargs:
