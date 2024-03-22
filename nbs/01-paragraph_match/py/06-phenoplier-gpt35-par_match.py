@@ -677,7 +677,7 @@ paragraph_matches.append(
     )
 )
 
-# %% tags=[] scrolled=true
+# %% scrolled=true tags=[]
 display(paragraph_matches[-1])
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
@@ -843,7 +843,7 @@ paragraph_matches.append(
     )
 )
 
-# %% tags=[] scrolled=true
+# %% scrolled=true tags=[]
 display(paragraph_matches[-1])
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
@@ -866,7 +866,7 @@ paragraph_matches.append(
     )
 )
 
-# %% tags=[] scrolled=true
+# %% scrolled=true tags=[]
 display(paragraph_matches[-1])
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
