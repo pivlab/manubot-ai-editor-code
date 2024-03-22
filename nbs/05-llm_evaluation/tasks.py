@@ -34,7 +34,7 @@ MAX_TOKENS = 2000
 SEED_INIT = 0
 
 # Evaluation parameters
-N_REPS = 10
+N_REPS = 5
 
 # Paths
 input_notebook_dir = conf.common.NBS_DIR / "05-llm_evaluation"
