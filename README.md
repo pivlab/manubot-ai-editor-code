@@ -28,6 +28,9 @@ The manuscript repository is at
 
 ### Ollama
 
+These steps are only needed if you want to try local, open models.
+We used this during development to test Mistral models.
+
 1. Install [Ollama](https://ollama.ai/). The latest version we tested is [v0.1.18](https://github.com/jmorganca/ollama/releases/tag/v0.1.18), which in Linux (amd64) you can install with:
    ```bash
    sudo curl -L https://github.com/jmorganca/ollama/releases/download/v0.1.18/ollama-linux-amd64 -o /usr/bin/ollama

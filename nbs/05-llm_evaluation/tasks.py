@@ -19,9 +19,9 @@ MANUSCRIPT_REPOSITORIES = {
 }
 
 LLM_JUDGES = [
-    "mistral:7b-instruct-fp16",
     "openai:gpt-4-turbo-preview",
     "openai:gpt-3.5-turbo",
+    "anthropicai:claude-3-opus-20240229",
 ]
 
 # Model and its parameters

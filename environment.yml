@@ -24,4 +24,5 @@ dependencies:
   - tqdm=4.*
   - pip:
       - langchain-openai
+      - langchain-anthropic
       - pygithub==2.2.*

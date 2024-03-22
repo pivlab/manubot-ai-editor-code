@@ -10,6 +10,7 @@ from langchain.prompts import (
 )
 from langchain_community.chat_models import ChatOllama
 from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
 
 
 def simplify_filename(filename: str) -> str:
@@ -59,12 +60,22 @@ def llm_pairwise(
             **default_model_kwargs,
         }
         model = ChatOpenAI(**params)
-    else:
+    elif model_name.startswith("anthropicai:"):
+        del default_model_kwargs["model_kwargs"]
+        
         params = {
-            "model": model_name,
+            "model": model_name[12:],
+            **default_model_kwargs,
+        }
+        model = ChatAnthropic(**params)
+    elif model_name.startswith("ollama:"):
+        params = {
+            "model": model_name[7:],
             **default_model_kwargs,
         }
         model = ChatOllama(**params)
+    else:
+        raise ValueError(f"Invalid or unsupported model name: {model_name}")
 
     par0_id = "Paragraph A"
     par1_id = "Paragraph 1"
