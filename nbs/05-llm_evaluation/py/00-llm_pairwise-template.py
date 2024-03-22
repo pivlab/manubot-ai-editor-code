@@ -169,6 +169,9 @@ df_results.shape
 df_results.head()
 
 # %%
+df_results["winner"].value_counts()
+
+# %%
 df_results = df_results[df_results["winner"].isin(winner_matchings.keys())]
 
 # %%
