@@ -143,6 +143,8 @@ df = df.replace({
     "manuscript_code": {
         "biochatter": "BioChatter",
         "ccc": "CCC",
+        "phenoplier": "PhenoPLIER",
+        "epistasis": "Epistasis",
     },
     "pr_model": models_rename,
     "llm_judge": models_rename,
@@ -183,7 +185,8 @@ with sns.axes_style("whitegrid"):
         x="paragraph_section",
         y="winner_score",
         col="manuscript_code",
-        # col="llm_judge",
+        col_order=["CCC", "PhenoPLIER", "BioChatter", "Epistasis"],
+        col_wrap=2,
         kind="point",
         hue="llm_judge",
     )
