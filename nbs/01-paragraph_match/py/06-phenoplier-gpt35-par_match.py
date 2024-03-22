@@ -35,11 +35,17 @@ from proj.utils import process_paragraph
 # # Settings/paths
 
 # %% editable=true slideshow={"slide_type": ""} tags=["parameters"]
-REPO = "pivlab/manubot-ai-editor-code-test-mutator-epistasis-manuscript"
+REPO = "pivlab/manubot-ai-editor-code-test-phenoplier-manuscript"
 PR = (2, "gpt-3.5-turbo")
 
 OUTPUT_FILE_PATH = None
 REVERSED_OUTPUT_FILE_PATH = None
+
+# %% tags=["injected-parameters"]
+# Parameters
+OUTPUT_FILE_PATH = "/home/miltondp/projects/others/manubot/manubot-ai-editor-code/base/results/paragraph_match/phenoplier-manuscript--gpt-3.5-turbo.pkl"
+REVERSED_OUTPUT_FILE_PATH = "/home/miltondp/projects/others/manubot/manubot-ai-editor-code/base/results/paragraph_match/phenoplier-manuscript--gpt-3.5-turbo--reversed.pkl"
+
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 OUTPUT_FILE_PATH = Path(OUTPUT_FILE_PATH).resolve()
@@ -299,76 +305,7 @@ par0 = process_paragraph(orig_section_paragraphs[4])
 print(par0)
 
 # %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[4])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 04
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[5])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[5])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 05
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[6])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[6])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 06
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[7])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[7])
+par1 = process_paragraph(mod_section_paragraphs[4:8])
 print(par1)
 
 # %% tags=[]
