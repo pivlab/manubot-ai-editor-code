@@ -19,6 +19,10 @@ MANUSCRIPT_REPOSITORIES = {
     "pivlab/manubot-ai-editor-code-test-ccc-manuscript": {
         "gpt-3.5-turbo": 2,
         # "gpt-4-0125-preview": 3,
+    },
+    "pivlab/manubot-ai-editor-code-test-phenoplier-manuscript": {
+        "gpt-3.5-turbo": 4,
+        # "gpt-4-0125-preview": 3,
     }
 }
 

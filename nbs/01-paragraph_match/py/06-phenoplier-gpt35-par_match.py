@@ -36,7 +36,7 @@ from proj.utils import process_paragraph
 
 # %% editable=true slideshow={"slide_type": ""} tags=["parameters"]
 REPO = "pivlab/manubot-ai-editor-code-test-phenoplier-manuscript"
-PR = (2, "gpt-3.5-turbo")
+PR = (4, "gpt-3.5-turbo")
 
 OUTPUT_FILE_PATH = None
 REVERSED_OUTPUT_FILE_PATH = None
@@ -321,7 +321,7 @@ paragraph_matches.append(
 display(paragraph_matches[-1])
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ## Results
+# ## Results (framework)
 
 # %% tags=[]
 section_name = "results"
@@ -329,6 +329,7 @@ section_name = "results"
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 pr_filename = pr_files[2].filename
 assert section_name in pr_filename
+assert "framework" in pr_filename
 print(pr_filename)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
@@ -420,6 +421,52 @@ display(paragraph_matches[-1])
 # ####  Paragraph 02
 
 # %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[4])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[4])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 03
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[5])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[5])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 04
+
+# %% tags=[]
 par0 = process_paragraph(orig_section_paragraphs[6])
 print(par0)
 
@@ -440,14 +487,254 @@ paragraph_matches.append(
 display(paragraph_matches[-1])
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 03
+# ## Results (CRISPR)
 
 # %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[8])
+# section_name = "results"
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+pr_filename = pr_files[3].filename
+assert section_name in pr_filename
+assert "crispr" in pr_filename
+print(pr_filename)
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Original
+
+# %% tags=[]
+# get content
+orig_section_content = repo.get_contents(pr_filename, pr_prev).decoded_content.decode(
+    "utf-8"
+)
+print(orig_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+orig_section_paragraphs = orig_section_content.split("\n\n")
+display(len(orig_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Modified
+
+# %% tags=[]
+# get content
+mod_section_content = repo.get_contents(pr_filename, pr_curr).decoded_content.decode(
+    "utf-8"
+)
+print(mod_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+mod_section_paragraphs = mod_section_content.split("\n\n")
+display(len(mod_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Match
+
+# %% tags=[]
+orig_section_paragraphs[0]
+
+# %% tags=[]
+mod_section_paragraphs[0]
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 00
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[1])
 print(par0)
 
 # %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[8])
+par1 = process_paragraph(mod_section_paragraphs[1])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 01
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[3])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[3])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 02
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[4])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[4])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ## Results (drug-disease prediction)
+
+# %% tags=[]
+# section_name = "results"
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+pr_filename = pr_files[4].filename
+assert section_name in pr_filename
+assert "drug_disease" in pr_filename
+print(pr_filename)
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Original
+
+# %% tags=[]
+# get content
+orig_section_content = repo.get_contents(pr_filename, pr_prev).decoded_content.decode(
+    "utf-8"
+)
+print(orig_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+orig_section_paragraphs = orig_section_content.split("\n\n")
+display(len(orig_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Modified
+
+# %% tags=[]
+# get content
+mod_section_content = repo.get_contents(pr_filename, pr_curr).decoded_content.decode(
+    "utf-8"
+)
+print(mod_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+mod_section_paragraphs = mod_section_content.split("\n\n")
+display(len(mod_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Match
+
+# %% tags=[]
+orig_section_paragraphs[0]
+
+# %% tags=[]
+mod_section_paragraphs[0]
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 00
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[1])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[1])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[] scrolled=true
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 01
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[3])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[3])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 02
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[4])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[4])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 03
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[7])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[7])
 print(par1)
 
 # %% tags=[]
@@ -486,221 +773,15 @@ paragraph_matches.append(
 display(paragraph_matches[-1])
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 05
+# ## Results (clustering)
 
 # %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[11])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[11])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 06
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[12])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[12])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 07
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[13])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[13])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 08
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[16])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[16])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 09
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[21])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[21])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 10
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[22])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[22])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 11
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[23])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[23])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 12
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[25])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[25])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 13
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[27])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[27])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ## Discussion
-
-# %% tags=[]
-section_name = "discussion"
+# section_name = "results"
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-pr_filename = pr_files[3].filename
+pr_filename = pr_files[5].filename
 assert section_name in pr_filename
+assert "traits_clustering" in pr_filename
 print(pr_filename)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
@@ -762,6 +843,171 @@ paragraph_matches.append(
     )
 )
 
+# %% tags=[] scrolled=true
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 01
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[4])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[4])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[] scrolled=true
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 02
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[6])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[6:8])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 03
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[7])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[8])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 04
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[8])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[9])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ## Discussion
+
+# %% tags=[]
+section_name = "discussion"
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+pr_filename = pr_files[6].filename
+assert section_name in pr_filename
+print(pr_filename)
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Original
+
+# %% tags=[]
+# get content
+orig_section_content = repo.get_contents(pr_filename, pr_prev).decoded_content.decode(
+    "utf-8"
+)
+print(orig_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+orig_section_paragraphs = orig_section_content.split("\n\n")
+display(len(orig_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Modified
+
+# %% tags=[]
+# get content
+mod_section_content = repo.get_contents(pr_filename, pr_curr).decoded_content.decode(
+    "utf-8"
+)
+print(mod_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+mod_section_paragraphs = mod_section_content.split("\n\n")
+display(len(mod_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Match
+
+# %% tags=[]
+orig_section_paragraphs[0]
+
+# %% tags=[]
+mod_section_paragraphs[0]
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 00
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[1])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[1])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
 # %% tags=[]
 display(paragraph_matches[-1])
 
@@ -769,11 +1015,1018 @@ display(paragraph_matches[-1])
 # ####  Paragraph 01
 
 # %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[2])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[2])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 02
+
+# %% tags=[]
 par0 = process_paragraph(orig_section_paragraphs[3])
 print(par0)
 
 # %% tags=[]
 par1 = process_paragraph(mod_section_paragraphs[3])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 03
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[4])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[4])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 04
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[5])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[5])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 05
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[6])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[6:8])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 06
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[7])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[8])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 07
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[8])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[9])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ## Methods
+
+# %% tags=[]
+section_name = "methods"
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+pr_filename = pr_files[7].filename
+assert section_name in pr_filename
+print(pr_filename)
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Original
+
+# %% tags=[]
+# get content
+orig_section_content = repo.get_contents(pr_filename, pr_prev).decoded_content.decode(
+    "utf-8"
+)
+print(orig_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+orig_section_paragraphs = orig_section_content.split("\n\n")
+display(len(orig_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Modified
+
+# %% tags=[]
+# get content
+mod_section_content = repo.get_contents(pr_filename, pr_curr).decoded_content.decode(
+    "utf-8"
+)
+print(mod_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+mod_section_paragraphs = mod_section_content.split("\n\n")
+display(len(mod_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Match
+
+# %% tags=[]
+orig_section_paragraphs[0]
+
+# %% tags=[]
+mod_section_paragraphs[0]
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 00
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[1])
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[1:4])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 01
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[4])
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[8:11])
+    .replace("$$", "\n$$")
+    .replace("$$ \\tilde", "$$\n\\tilde")
+    .replace("$$ {#eq:1} is", "$$ {#eq:1}\nis")
+    # .replace("$$ For example", "$$\nFor example")
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 02
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[5:10])
+    .replace("$$", "\n$$")
+    .replace("$$ \\", "$$\n\\")
+    .replace(":predixcan} where", ":predixcan}\nwhere")
+    .replace(":spredixcan} where", ":spredixcan}\nwhere")
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[11:16])
+    .replace("$$", "\n$$")
+    .replace("$$ \\", "$$\n\\")
+    .replace(":predixcan} where", ":predixcan}\nwhere")
+    .replace(":spredixcan} where", ":spredixcan}\nwhere")
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 03
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[10:15])
+    .replace("$$", "\n$$")
+    .replace("$$ \\", "$$\n\\")
+    .replace(":multixcan} where", ":multixcan}\nwhere")
+    .replace(":smultixcan} where", ":smultixcan}\nwhere")
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[16:21])
+    .replace("$$", "\n$$")
+    .replace("$$ \\", "$$\n\\")
+    .replace(":multixcan} where", ":multixcan}\nwhere")
+    .replace(":smultixcan} where", ":smultixcan}\nwhere")
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 04
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[20:23])
+    .replace("$$", "\n$$")
+    .replace("$$ ||", "$$\n||")
+    .replace(":plier_func} subject", ":plier_func}\nsubject")
+    # .replace(":smultixcan} where", ":smultixcan}\nwhere")
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[30:33])
+    .replace("$$", "\n$$")
+    .replace("$$ ||", "$$\n||")
+    .replace("$$ This opt", "$$\nThis opt")
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 05
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[23:26])
+    .replace("$$", "\n$$")
+    .replace("$$ \\", "$$\n\\")
+    .replace(":proj} where", ":proj}\nwhere")
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[33:36])
+    .replace("$$", "\n$$")
+    .replace("$$ \\", "$$\n\\")
+    .replace(":proj} Here", ":proj}\nHere")
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 06
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[31])
+    # .replace("$$", "\n$$")
+    # .replace("$$ \\", "$$\n\\")
+    # .replace(":proj} Here", ":proj}\nHere")
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[45])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 07
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[39])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[53])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 08
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[43])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[58])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 09
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[44])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[59])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 10
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[47])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[63:67])
+    .replace("$$", "\n$$")
+    .replace("$$ \\", "$$\n\\")
+    .replace("$$ where", "$$\nwhere")
+    .replace("$$ M", "$$\nM")
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 11
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[48:51])
+    .replace("$$", "\n$$")
+    .replace("$$ \\", "$$\n\\")
+    .replace(":obj_func} where", ":obj_func}\nwhere")
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[68:71])
+    .replace("$$", "\n$$")
+    .replace("$$ \\", "$$\n\\")
+    .replace(":obj_func} where", ":obj_func}\nwhere")
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 12
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[51])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[71:76])
+    .replace("$$", "\n$$")
+    .replace("$$ ", "$$\n")
+    # .replace(":obj_func} where", ":obj_func}\nwhere")
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 13
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[52])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[76])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 14
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[53])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph([
+        mod_section_paragraphs[78],
+        mod_section_paragraphs[80],
+    ])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 15
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[56])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[83])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 16
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[57])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[84])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 17
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[58])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[85])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 18
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[59])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[87])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 19
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[60])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[90])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 20
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[61])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[91])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 21
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[62])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[92])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 22
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[63])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[94])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 23
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[67])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[98])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 24
+
+# %% tags=[]
+par0 = (
+    process_paragraph(orig_section_paragraphs[70])
+)
+print(par0)
+
+# %% tags=[]
+par1 = (
+    process_paragraph(mod_section_paragraphs[104])
+)
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ## Supplementary material
+
+# %% tags=[]
+section_name = "supplementary material"
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+pr_filename = pr_files[8].filename
+assert "supplementary" in pr_filename
+print(pr_filename)
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Original
+
+# %% tags=[]
+# get content
+orig_section_content = repo.get_contents(pr_filename, pr_prev).decoded_content.decode(
+    "utf-8"
+)
+print(orig_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+orig_section_paragraphs = orig_section_content.split("\n\n")
+display(len(orig_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Modified
+
+# %% tags=[]
+# get content
+mod_section_content = repo.get_contents(pr_filename, pr_curr).decoded_content.decode(
+    "utf-8"
+)
+print(mod_section_content[:50])
+
+# %% tags=[]
+# split by paragraph
+mod_section_paragraphs = mod_section_content.split("\n\n")
+display(len(mod_section_paragraphs))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ### Match
+
+# %% tags=[]
+orig_section_paragraphs[0]
+
+# %% tags=[]
+mod_section_paragraphs[0]
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 00
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[3])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[3])
+print(par1)
+
+# %% tags=[]
+paragraph_matches.append(
+    (
+        section_name,
+        par0,
+        par1,
+    )
+)
+
+# %% tags=[]
+display(paragraph_matches[-1])
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# ####  Paragraph 01
+
+# %% tags=[]
+par0 = process_paragraph(orig_section_paragraphs[4])
+print(par0)
+
+# %% tags=[]
+par1 = process_paragraph(mod_section_paragraphs[4])
 print(par1)
 
 # %% tags=[]
@@ -815,11 +2068,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 03
 
 # %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[6])
+par0 = process_paragraph(orig_section_paragraphs[7])
 print(par0)
 
 # %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[6])
+par1 = process_paragraph(mod_section_paragraphs[7])
 print(par1)
 
 # %% tags=[]
@@ -838,11 +2091,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 04
 
 # %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[9])
+par0 = process_paragraph(orig_section_paragraphs[8])
 print(par0)
 
 # %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[9])
+par1 = process_paragraph(mod_section_paragraphs[8])
 print(par1)
 
 # %% tags=[]
@@ -861,11 +2114,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 05
 
 # %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[11])
+par0 = process_paragraph(orig_section_paragraphs[33])
 print(par0)
 
 # %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[11])
+par1 = process_paragraph(mod_section_paragraphs[33])
 print(par1)
 
 # %% tags=[]
@@ -884,1005 +2137,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 06
 
 # %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[13])
+par0 = process_paragraph(orig_section_paragraphs[35])
 print(par0)
 
 # %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[13])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 07
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[15])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[15])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 08
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[18])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[18])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 09
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[19])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[19])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 10
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[20])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[20])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 11
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[23])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[23])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 12
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[24])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[24])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 13
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[26])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[26])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 14
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[28])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[28])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 15
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[29])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[29])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 16
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[30])
-print(par0)
-
-# %% tags=[]
-par1 = process_paragraph(mod_section_paragraphs[30])
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ## Methods
-
-# %% tags=[]
-section_name = "methods"
-
-# %% editable=true slideshow={"slide_type": ""} tags=[]
-pr_filename = pr_files[4].filename
-assert section_name in pr_filename
-print(pr_filename)
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ### Original
-
-# %% tags=[]
-# get content
-orig_section_content = repo.get_contents(pr_filename, pr_prev).decoded_content.decode(
-    "utf-8"
-)
-print(orig_section_content[:50])
-
-# %% tags=[]
-# split by paragraph
-orig_section_paragraphs = orig_section_content.split("\n\n")
-display(len(orig_section_paragraphs))
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ### Modified
-
-# %% tags=[]
-# get content
-mod_section_content = repo.get_contents(pr_filename, pr_curr).decoded_content.decode(
-    "utf-8"
-)
-print(mod_section_content[:50])
-
-# %% tags=[]
-# split by paragraph
-mod_section_paragraphs = mod_section_content.split("\n\n")
-display(len(mod_section_paragraphs))
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ### Match
-
-# %% tags=[]
-orig_section_paragraphs[0]
-
-# %% tags=[]
-mod_section_paragraphs[0]
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 00
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[2])
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[2:4])
-    .replace("$$", "\n$$")
-    .replace("\\text", "\n\\text")
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 01
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[3:9]).replace(" * ", "\n* ")
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[4:7])
-    .replace("$$", "\n$$")
-    .replace("\\begin{", "\n\\begin{")
-    .replace("&\\", "\n&\\")
-    .replace("\\end{", "\n\\end{")
-    .replace("$$ This", "$$\nThis")
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 02
-
-# %% tags=[]
-par0 = process_paragraph(orig_section_paragraphs[13])
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[11:14])
-    .replace("$$", "\n$$")
-    .replace("$$ \\text", "$$\n\\text")
-    .replace("$$ For example", "$$\nFor example")
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 03
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[14:17])
-    .replace("$$D", "\n$$\nD")
-    .replace("}$$", "}\n$$")
-    .replace("$$ where", "$$\nwhere")
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[14:18])
-    .replace("$$D", "\n$$\nD")
-    .replace("}$$", "}\n$$")
-    .replace("$$ where", "$$\nwhere")
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 04
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[17])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[18])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 05
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[19])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph([
-        mod_section_paragraphs[21],
-        mod_section_paragraphs[23],
-        mod_section_paragraphs[25],
-        mod_section_paragraphs[27],
-    ])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 06
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[21])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[29])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 07
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[22])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph([
-        mod_section_paragraphs[31],
-        mod_section_paragraphs[33],
-    ])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 08
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[23])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph([
-        # mod_section_paragraphs[31],
-        mod_section_paragraphs[35],
-    ])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 09
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[25])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph([
-        # mod_section_paragraphs[31],
-        mod_section_paragraphs[39],
-    ])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 10
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[26])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph([
-        mod_section_paragraphs[40],
-        mod_section_paragraphs[41],
-    ])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 11
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[34])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph([
-        mod_section_paragraphs[50],
-        # mod_section_paragraphs[41],
-    ])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 12
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[41])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph([
-        mod_section_paragraphs[58],
-        # mod_section_paragraphs[41],
-    ])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 13
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[42])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[61:63],
-        # mod_section_paragraphs[41],
-    )
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 14
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[47])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[71],
-        # mod_section_paragraphs[41],
-    )
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 15
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[49])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[73:76],
-        # mod_section_paragraphs[41],
-    )
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 16
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[50])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[76],
-        # mod_section_paragraphs[41],
-    )
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 17
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[53])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[80:83],
-        # mod_section_paragraphs[41],
-    )
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 18
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[56])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[85:87],
-        # mod_section_paragraphs[41],
-    )
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 19
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[68])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[99],
-        # mod_section_paragraphs[41],
-    )
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 20
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[70])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph([
-        mod_section_paragraphs[103],
-        mod_section_paragraphs[105],
-    ])
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 21
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[71])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[108],
-        # mod_section_paragraphs[41],
-    )
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 22
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[76])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[114],
-        # mod_section_paragraphs[41],
-    )
-)
-print(par1)
-
-# %% tags=[]
-paragraph_matches.append(
-    (
-        section_name,
-        par0,
-        par1,
-    )
-)
-
-# %% tags=[]
-display(paragraph_matches[-1])
-
-# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# ####  Paragraph 23
-
-# %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[82])
-)
-print(par0)
-
-# %% tags=[]
-par1 = (
-    process_paragraph(
-        mod_section_paragraphs[120],
-        # mod_section_paragraphs[41],
-    )
-)
+par1 = process_paragraph(mod_section_paragraphs[35])
 print(par1)
 
 # %% tags=[]
