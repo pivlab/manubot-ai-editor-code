@@ -195,4 +195,41 @@ with sns.axes_style("whitegrid"):
     # g.tick_params(axis='x', rotation=30)
     # g.set_xticklabels(g.ax.get_xticklabels(), rotation=30)
 
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+with sns.axes_style("whitegrid"):
+    g = sns.catplot(
+        height=5,
+        aspect=1.3,
+        data=df[df["llm_judge"] == "GPT 3.5 Turbo"],
+        x="paragraph_section",
+        y="winner_score",
+        hue="manuscript_code",
+        hue_order=["CCC", "PhenoPLIER", "BioChatter", "Epistasis"],
+        # col_wrap=2,
+        kind="point",
+    )
+    g.set_axis_labels("", "Revision score")
+    g.set_titles("{col_name} manuscript")
+    # g.tick_params(axis='x', rotation=30)
+    # g.set_xticklabels(g.ax.get_xticklabels(), rotation=30)
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+with sns.plotting_context("paper", font_scale=1.0), sns.axes_style("whitegrid"):
+    g = sns.catplot(
+        height=4,
+        aspect=1.4,
+        data=df[df["llm_judge"].isin(("GPT 3.5 Turbo", "GPT-4 Turbo"))],
+        x="paragraph_section",
+        y="winner_score",
+        col="manuscript_code",
+        col_order=["CCC", "PhenoPLIER", "BioChatter", "Epistasis"],
+        col_wrap=2,
+        kind="point",
+        hue="llm_judge",
+    )
+    g.set_axis_labels("", "Revision score")
+    g.set_titles("{col_name} manuscript")
+    # g.tick_params(axis='x', rotation=30)
+    # g.set_xticklabels(g.ax.get_xticklabels(), rotation=30)
+
 # %%
