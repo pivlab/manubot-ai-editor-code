@@ -19,7 +19,7 @@
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # This notebook is a template notebook that is intended to be run across different parameters.
 #
-# TODO
+# Based on the settings below, it loads an input file with paragraph pairs (original and revised) and uses the LLM-as-a-Judge approach to evaluate the quality of the paragraphs.
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Modules
