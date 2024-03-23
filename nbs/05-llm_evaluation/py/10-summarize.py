@@ -17,7 +17,7 @@
 # # Description
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# TODO
+# Plots results.
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Modules
@@ -30,22 +30,6 @@ from proj import conf
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Settings/paths
-
-# %% editable=true slideshow={"slide_type": ""} tags=["parameters"]
-# # Input manuscript
-# REPO = None
-
-# INPUT_FILE = None
-# OUTPUT_FILE = None
-
-# # Model and its parameters
-# LLM_JUDGE = None
-# TEMPERATURE = None
-# MAX_TOKENS = 2000
-# SEED_INIT = 0
-
-# # Evaluation parameters
-# N_REPS = None
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 INPUT_DIR = conf.common.LLM_PAIRWISE_DIR
@@ -153,13 +137,13 @@ df = df.replace(
             "results": "Results",
             "methods": "Methods",
             "discussion": "Discussion",
-            "supplementary material": "Supplementary\nmaterial",
+            "supplementary material": "Suppl.\nmaterial",
         },
     }
 )
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# # Plot
+# # Full plot
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 with sns.axes_style("whitegrid"):
@@ -176,24 +160,8 @@ with sns.axes_style("whitegrid"):
     g.set_titles("{row_name} manuscript | judge: {col_name}")
     g.tick_params(axis="x", rotation=30)
 
-# %% editable=true slideshow={"slide_type": ""} tags=[]
-with sns.axes_style("whitegrid"):
-    g = sns.catplot(
-        height=5,
-        aspect=1.3,
-        data=df,
-        x="paragraph_section",
-        y="winner_score",
-        col="manuscript_code",
-        col_order=["CCC", "PhenoPLIER", "BioChatter", "Epistasis"],
-        col_wrap=2,
-        kind="point",
-        hue="llm_judge",
-    )
-    g.set_axis_labels("", "Revision score")
-    g.set_titles("{col_name} manuscript")
-    # g.tick_params(axis='x', rotation=30)
-    # g.set_xticklabels(g.ax.get_xticklabels(), rotation=30)
+# %% [markdown]
+# ## Simple plot with all manuscript together
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 with sns.axes_style("whitegrid"):
@@ -210,11 +178,21 @@ with sns.axes_style("whitegrid"):
     )
     g.set_axis_labels("", "Revision score")
     g.set_titles("{col_name} manuscript")
-    # g.tick_params(axis='x', rotation=30)
-    # g.set_xticklabels(g.ax.get_xticklabels(), rotation=30)
+
+# %% [markdown]
+# ## Plot with one panel per manuscript
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
-with sns.plotting_context("paper", font_scale=1.0), sns.axes_style("whitegrid"):
+with sns.plotting_context(
+    "paper",
+    rc={
+        "axes.labelsize": 13,
+        "xtick.labelsize": 10,
+        "ytick.labelsize": 10,
+        "legend.title_fontsize": 12,
+        "legend.fontsize": 12,
+    },
+), sns.axes_style("whitegrid"):
     g = sns.catplot(
         height=4,
         aspect=1.4,
@@ -229,7 +207,10 @@ with sns.plotting_context("paper", font_scale=1.0), sns.axes_style("whitegrid"):
     )
     g.set_axis_labels("", "Revision score")
     g.set_titles("{col_name} manuscript")
-    # g.tick_params(axis='x', rotation=30)
-    # g.set_xticklabels(g.ax.get_xticklabels(), rotation=30)
+    g._legend.set_title("Judge")
+    for ax_idx, ax in enumerate(g.axes):
+        if ax_idx in (1, 3):
+            sns.despine(ax=ax, left=True)
+            ax.yaxis.set_tick_params(left=False)
 
 # %%
