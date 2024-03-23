@@ -23,7 +23,7 @@ MANUSCRIPT_REPOSITORIES = {
     "pivlab/manubot-ai-editor-code-test-phenoplier-manuscript": {
         "gpt-3.5-turbo": 4,
         # "gpt-4-0125-preview": 3,
-    }
+    },
 }
 
 LLM_JUDGES = [
@@ -58,18 +58,20 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
                 if reversed_paragraphs:
                     manuscript_pr_code += "--reversed"
 
-                input_file = conf.common.PARAGRAPH_MATCH_DIR / f"{manuscript_pr_code}.pkl"
-                
+                input_file = (
+                    conf.common.PARAGRAPH_MATCH_DIR / f"{manuscript_pr_code}.pkl"
+                )
+
                 manuscript_pr_llm_judge_code = f"{manuscript_pr_code}--{llm_judge}"
-                
+
                 task_id = f"run_llm_pairwise-{manuscript_pr_llm_judge_code}"
-    
+
                 input_notebook_py_path = (
                     input_notebook_dir
                     / "py"
                     / input_notebook_name_template.format(suffix="template", ext="py")
                 )
-    
+
                 output_notebook_path = (
                     output_notebook_dir.name
                     + os.sep
@@ -80,7 +82,7 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
                         )
                     )
                 )
-    
+
                 @task(id=task_id)
                 def run_llm_pairwise(
                     input_notebook_py_path: Path = input_notebook_py_path,
@@ -97,7 +99,7 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
                         input_notebook_py_path.parent.parent
                         / input_notebook_py_path.with_suffix(".ipynb").name
                     )
-    
+
                     command = f"""
                     bash {conf.common.CODE_DIR}/scripts/run_nbs.sh \
                         {str(input_notebook_path)} \
@@ -111,5 +113,7 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
                         -p SEED_INIT {SEED_INIT} \
                         -p N_REPS {N_REPS}
                     """.strip()
-    
-                    subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE)
+
+                    subprocess.run(
+                        command, shell=True, check=True, stdout=subprocess.PIPE
+                    )

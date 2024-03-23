@@ -24,13 +24,9 @@
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 from IPython.display import display
-from langchain.cache import SQLiteCache
-from langchain.globals import set_llm_cache
 from proj import conf
-from proj.utils import llm_pairwise
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Settings/paths
@@ -76,13 +72,13 @@ all_results = []
 for f in result_files:
     print(f.name, flush=True)
     df = pd.read_pickle(f)
-    
+
     f_name_parts = f.name.split("--")
     idx = 0
     manuscript_code = f_name_parts[idx]
     manuscript_code = manuscript_code.split("-manuscript")[0]
     idx += 1
-    
+
     manuscript_pr_model = f_name_parts[idx]
     idx += 1
 
@@ -90,7 +86,7 @@ for f in result_files:
     if len(f_name_parts) > 3:
         reversed_paragraphs = f_name_parts[idx] == "reversed"
         idx += 1
-    
+
     llm_judge = f_name_parts[idx].split(".pkl")[0]
 
     df.insert(0, "llm_judge", llm_judge)
@@ -116,7 +112,9 @@ df.head()
 # ## Reverse scores for reversed paragraphs
 
 # %%
-df.loc[df["paragraphs_reversed"], "winner_score"] = -1 * df.loc[df["paragraphs_reversed"], "winner_score"]
+df.loc[df["paragraphs_reversed"], "winner_score"] = (
+    -1 * df.loc[df["paragraphs_reversed"], "winner_score"]
+)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # ## Rename values
@@ -139,24 +137,26 @@ df["manuscript_code"].unique()
 df["paragraph_section"].unique()
 
 # %%
-df = df.replace({
-    "manuscript_code": {
-        "biochatter": "BioChatter",
-        "ccc": "CCC",
-        "phenoplier": "PhenoPLIER",
-        "epistasis": "Epistasis",
-    },
-    "pr_model": models_rename,
-    "llm_judge": models_rename,
-    "paragraph_section": {
-        "abstract": "Abstract",
-        "introduction": "Introduction",
-        "results": "Results",
-        "methods": "Methods",
-        "discussion": "Discussion",
-        "supplementary material": "Supplementary\nmaterial",
+df = df.replace(
+    {
+        "manuscript_code": {
+            "biochatter": "BioChatter",
+            "ccc": "CCC",
+            "phenoplier": "PhenoPLIER",
+            "epistasis": "Epistasis",
+        },
+        "pr_model": models_rename,
+        "llm_judge": models_rename,
+        "paragraph_section": {
+            "abstract": "Abstract",
+            "introduction": "Introduction",
+            "results": "Results",
+            "methods": "Methods",
+            "discussion": "Discussion",
+            "supplementary material": "Supplementary\nmaterial",
+        },
     }
-})
+)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Plot
@@ -174,7 +174,7 @@ with sns.axes_style("whitegrid"):
     )
     g.set_axis_labels("", "Revision score")
     g.set_titles("{row_name} manuscript | judge: {col_name}")
-    g.tick_params(axis='x', rotation=30)
+    g.tick_params(axis="x", rotation=30)
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 with sns.axes_style("whitegrid"):

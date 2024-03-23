@@ -60,7 +60,7 @@ display(conf.common.LLM_CACHE_DIR)
 # # Set default LangChain cache file
 
 # %%
-default_cache_file = conf.common.LLM_CACHE_DIR / f"default.db"
+default_cache_file = conf.common.LLM_CACHE_DIR / "default.db"
 display(default_cache_file)
 set_llm_cache(SQLiteCache(database_path=str(default_cache_file)))
 

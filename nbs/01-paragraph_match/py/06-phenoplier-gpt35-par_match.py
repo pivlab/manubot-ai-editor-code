@@ -1230,9 +1230,7 @@ par0 = process_paragraph(orig_section_paragraphs[1])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[1:4])
-)
+par1 = process_paragraph(mod_section_paragraphs[1:4])
 print(par1)
 
 # %% tags=[]
@@ -1426,9 +1424,7 @@ par0 = (
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[45])
-)
+par1 = process_paragraph(mod_section_paragraphs[45])
 print(par1)
 
 # %% tags=[]
@@ -1447,15 +1443,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 07
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[39])
-)
+par0 = process_paragraph(orig_section_paragraphs[39])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[53])
-)
+par1 = process_paragraph(mod_section_paragraphs[53])
 print(par1)
 
 # %% tags=[]
@@ -1474,15 +1466,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 08
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[43])
-)
+par0 = process_paragraph(orig_section_paragraphs[43])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[58])
-)
+par1 = process_paragraph(mod_section_paragraphs[58])
 print(par1)
 
 # %% tags=[]
@@ -1501,15 +1489,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 09
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[44])
-)
+par0 = process_paragraph(orig_section_paragraphs[44])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[59])
-)
+par1 = process_paragraph(mod_section_paragraphs[59])
 print(par1)
 
 # %% tags=[]
@@ -1528,9 +1512,7 @@ display(paragraph_matches[-1])
 # ####  Paragraph 10
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[47])
-)
+par0 = process_paragraph(orig_section_paragraphs[47])
 print(par0)
 
 # %% tags=[]
@@ -1592,9 +1574,7 @@ display(paragraph_matches[-1])
 # ####  Paragraph 12
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[51])
-)
+par0 = process_paragraph(orig_section_paragraphs[51])
 print(par0)
 
 # %% tags=[]
@@ -1622,15 +1602,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 13
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[52])
-)
+par0 = process_paragraph(orig_section_paragraphs[52])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[76])
-)
+par1 = process_paragraph(mod_section_paragraphs[76])
 print(par1)
 
 # %% tags=[]
@@ -1649,17 +1625,15 @@ display(paragraph_matches[-1])
 # ####  Paragraph 14
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[53])
-)
+par0 = process_paragraph(orig_section_paragraphs[53])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph([
+par1 = process_paragraph(
+    [
         mod_section_paragraphs[78],
         mod_section_paragraphs[80],
-    ])
+    ]
 )
 print(par1)
 
@@ -1679,15 +1653,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 15
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[56])
-)
+par0 = process_paragraph(orig_section_paragraphs[56])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[83])
-)
+par1 = process_paragraph(mod_section_paragraphs[83])
 print(par1)
 
 # %% tags=[]
@@ -1706,15 +1676,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 16
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[57])
-)
+par0 = process_paragraph(orig_section_paragraphs[57])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[84])
-)
+par1 = process_paragraph(mod_section_paragraphs[84])
 print(par1)
 
 # %% tags=[]
@@ -1733,15 +1699,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 17
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[58])
-)
+par0 = process_paragraph(orig_section_paragraphs[58])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[85])
-)
+par1 = process_paragraph(mod_section_paragraphs[85])
 print(par1)
 
 # %% tags=[]
@@ -1760,15 +1722,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 18
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[59])
-)
+par0 = process_paragraph(orig_section_paragraphs[59])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[87])
-)
+par1 = process_paragraph(mod_section_paragraphs[87])
 print(par1)
 
 # %% tags=[]
@@ -1787,15 +1745,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 19
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[60])
-)
+par0 = process_paragraph(orig_section_paragraphs[60])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[90])
-)
+par1 = process_paragraph(mod_section_paragraphs[90])
 print(par1)
 
 # %% tags=[]
@@ -1814,15 +1768,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 20
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[61])
-)
+par0 = process_paragraph(orig_section_paragraphs[61])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[91])
-)
+par1 = process_paragraph(mod_section_paragraphs[91])
 print(par1)
 
 # %% tags=[]
@@ -1841,15 +1791,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 21
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[62])
-)
+par0 = process_paragraph(orig_section_paragraphs[62])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[92])
-)
+par1 = process_paragraph(mod_section_paragraphs[92])
 print(par1)
 
 # %% tags=[]
@@ -1868,15 +1814,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 22
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[63])
-)
+par0 = process_paragraph(orig_section_paragraphs[63])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[94])
-)
+par1 = process_paragraph(mod_section_paragraphs[94])
 print(par1)
 
 # %% tags=[]
@@ -1895,15 +1837,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 23
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[67])
-)
+par0 = process_paragraph(orig_section_paragraphs[67])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[98])
-)
+par1 = process_paragraph(mod_section_paragraphs[98])
 print(par1)
 
 # %% tags=[]
@@ -1922,15 +1860,11 @@ display(paragraph_matches[-1])
 # ####  Paragraph 24
 
 # %% tags=[]
-par0 = (
-    process_paragraph(orig_section_paragraphs[70])
-)
+par0 = process_paragraph(orig_section_paragraphs[70])
 print(par0)
 
 # %% tags=[]
-par1 = (
-    process_paragraph(mod_section_paragraphs[104])
-)
+par1 = process_paragraph(mod_section_paragraphs[104])
 print(par1)
 
 # %% tags=[]
