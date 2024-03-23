@@ -57,6 +57,14 @@ conf.common.LLM_CACHE_DIR.mkdir(parents=True, exist_ok=True)
 display(conf.common.LLM_CACHE_DIR)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
+# # Set default LangChain cache file
+
+# %%
+default_cache_file = conf.common.LLM_CACHE_DIR / f"default.db"
+display(default_cache_file)
+set_llm_cache(SQLiteCache(database_path=str(default_cache_file)))
+
+# %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Load paragraphs
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
