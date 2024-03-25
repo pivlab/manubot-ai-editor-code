@@ -7,7 +7,7 @@ This file is intended to be modified by project maintainers only.
 try:
     from dotenv import load_dotenv
 
-    load_dotenv()
+    load_dotenv(override=True)
 except ImportError:
     pass
 
