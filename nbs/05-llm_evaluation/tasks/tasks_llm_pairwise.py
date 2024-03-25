@@ -46,7 +46,6 @@ input_notebook_name_template = "00-llm_pairwise-{suffix}.{ext}"
 output_notebook_dir = input_notebook_dir / "output"
 output_notebook_dir.mkdir(exist_ok=True, parents=True)
 
-
 #
 # Run the LLM pairwise comparison
 #
@@ -83,16 +82,17 @@ for repo, prs in MANUSCRIPT_REPOSITORIES.items():
                     )
                 )
 
+                output_result_file = conf.common.LLM_PAIRWISE_DIR / simplify_filename(
+                    f"{manuscript_pr_llm_judge_code}.pkl"
+                )
+
                 @task(id=task_id)
                 def run_llm_pairwise(
                     input_notebook_py_path: Path = input_notebook_py_path,
                     output_notebook_path: str = output_notebook_path,
                     repository: str = repo,
                     input_file: Path = input_file,
-                    output_file: Annotated[Path, Product] = (
-                        conf.common.LLM_PAIRWISE_DIR
-                        / simplify_filename(f"{manuscript_pr_llm_judge_code}.pkl")
-                    ),
+                    output_file: Annotated[Path, Product] = output_result_file,
                     llm_judge: str = llm_judge,
                 ) -> None:
                     input_notebook_path = (

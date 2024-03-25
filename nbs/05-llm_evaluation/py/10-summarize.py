@@ -23,6 +23,8 @@
 # # Modules
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
+from pathlib import Path
+
 import pandas as pd
 import seaborn as sns
 from IPython.display import display
@@ -31,15 +33,26 @@ from proj import conf
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Settings/paths
 
+# %% editable=true slideshow={"slide_type": ""} tags=["parameters"]
+OUTPUT_FIGURE_FILE = None
+
+# %% tags=["injected-parameters"]
+# Parameters
+OUTPUT_FIGURE_FILE = "/home/miltondp/projects/others/manubot/manubot-gpt-manuscript/content/images/llm_judge.svg"
+
+
+# %% editable=true slideshow={"slide_type": ""} tags=[]
+assert (
+    OUTPUT_FIGURE_FILE is not None and OUTPUT_FIGURE_FILE.strip() != ""
+), "Output file not specified"
+
+OUTPUT_FIGURE_FILE = Path(OUTPUT_FIGURE_FILE).resolve()
+OUTPUT_FIGURE_FILE.parent.mkdir(parents=True, exist_ok=True)
+
 # %% editable=true slideshow={"slide_type": ""} tags=[]
 INPUT_DIR = conf.common.LLM_PAIRWISE_DIR
 assert INPUT_DIR.exists()
 display(INPUT_DIR)
-
-# %%
-MANUSCRIPT_OUTPUT_DIR = conf.manuscript.FIGURES_DIR
-MANUSCRIPT_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-display(MANUSCRIPT_OUTPUT_DIR)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Load LLM pairwise files
@@ -49,10 +62,10 @@ result_files = list(INPUT_DIR.glob("*.pkl"))
 display(len(result_files))
 display(result_files[:2])
 
-# %%
+# %% tags=[]
 pd.read_pickle(result_files[0])
 
-# %%
+# %% tags=[]
 result_files[0].name.split("--")
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
@@ -85,7 +98,7 @@ for f in result_files:
 
     all_results.append(df)
 
-# %%
+# %% tags=[]
 df = pd.concat(all_results, ignore_index=True)
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
@@ -100,7 +113,7 @@ df.head()
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # ## Reverse scores for reversed paragraphs
 
-# %%
+# %% tags=[]
 df.loc[df["paragraphs_reversed"], "winner_score"] = (
     -1 * df.loc[df["paragraphs_reversed"], "winner_score"]
 )
@@ -108,10 +121,10 @@ df.loc[df["paragraphs_reversed"], "winner_score"] = (
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # ## Rename values
 
-# %%
+# %% tags=[]
 df["llm_judge"].unique()
 
-# %%
+# %% tags=[]
 models_rename = {
     "openai_gpt-4": "GPT-4",
     "openai_gpt-4-turbo-preview": "GPT-4 Turbo",
@@ -119,13 +132,13 @@ models_rename = {
     "mistral_7b-instruct-fp16": "Mistral 7b",
 }
 
-# %%
+# %% tags=[]
 df["manuscript_code"].unique()
 
-# %%
+# %% tags=[]
 df["paragraph_section"].unique()
 
-# %%
+# %% tags=[]
 df = df.replace(
     {
         "manuscript_code": {
@@ -165,7 +178,7 @@ with sns.axes_style("whitegrid"):
     g.set_titles("{row_name} manuscript | judge: {col_name}")
     g.tick_params(axis="x", rotation=30)
 
-# %% [markdown]
+# %% [markdown] tags=[]
 # ## Simple plot with all manuscript together
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
@@ -184,7 +197,7 @@ with sns.axes_style("whitegrid"):
     g.set_axis_labels("", "Revision score")
     g.set_titles("{col_name} manuscript")
 
-# %% [markdown]
+# %% [markdown] tags=[]
 # ## Plot with one panel per manuscript
 
 # %% editable=true slideshow={"slide_type": ""} tags=[]
@@ -218,8 +231,7 @@ with sns.plotting_context(
             sns.despine(ax=ax, left=True)
             ax.yaxis.set_tick_params(left=False)
 
-    if MANUSCRIPT_OUTPUT_DIR is not None:
-        display(f"Saving figure to {MANUSCRIPT_OUTPUT_DIR}")
-        g.savefig(MANUSCRIPT_OUTPUT_DIR / "llm_judge.svg")
+    display(f"Saving figure to {OUTPUT_FIGURE_FILE}")
+    g.savefig(OUTPUT_FIGURE_FILE)
 
-# %%
+# %% tags=[]

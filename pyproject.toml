@@ -42,5 +42,5 @@ max-complexity = 19
 "nbs/**/*.py" = ["B018"]
 
 [tool.pytask.ini_options]
-task_files = "tasks.py"
+task_files = "tasks_*.py"
 show_errors_immediately = true
