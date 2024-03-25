@@ -115,7 +115,7 @@ df["llm_judge"].unique()
 models_rename = {
     "openai_gpt-4": "GPT-4",
     "openai_gpt-4-turbo-preview": "GPT-4 Turbo",
-    "openai_gpt-3.5-turbo": "GPT 3.5 Turbo",
+    "openai_gpt-3.5-turbo": "GPT-3.5 Turbo",
     "mistral_7b-instruct-fp16": "Mistral 7b",
 }
 
@@ -173,7 +173,7 @@ with sns.axes_style("whitegrid"):
     g = sns.catplot(
         height=5,
         aspect=1.3,
-        data=df[df["llm_judge"] == "GPT 3.5 Turbo"],
+        data=df[df["llm_judge"] == "GPT-3.5 Turbo"],
         x="paragraph_section",
         y="winner_score",
         hue="manuscript_code",
@@ -201,7 +201,7 @@ with sns.plotting_context(
     g = sns.catplot(
         height=4,
         aspect=1.4,
-        data=df[df["llm_judge"].isin(("GPT 3.5 Turbo", "GPT-4 Turbo"))],
+        data=df[df["llm_judge"].isin(("GPT-3.5 Turbo", "GPT-4 Turbo"))],
         x="paragraph_section",
         y="winner_score",
         col="manuscript_code",
