@@ -16,3 +16,4 @@ if DIR is None or DIR.strip() == "":
 DIR = Path(DIR).resolve()
 
 FIGURES_DIR = DIR / "content" / "images"
+SUPPLEMENTARY_MATERIAL_DIR = DIR / "content" / "supplementary_files"
