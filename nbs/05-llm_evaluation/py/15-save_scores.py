@@ -17,7 +17,7 @@
 # # Description
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
-# Analyzes some specific paragraphs.
+# Save paragraph scores.
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Modules
