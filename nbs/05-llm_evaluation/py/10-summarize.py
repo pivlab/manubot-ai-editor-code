@@ -37,10 +37,9 @@ assert INPUT_DIR.exists()
 display(INPUT_DIR)
 
 # %%
-MANUSCRIPT_OUTPUT_DIR = conf.manuscript.DIR
+MANUSCRIPT_OUTPUT_DIR = conf.manuscript.FIGURES_DIR
+MANUSCRIPT_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 display(MANUSCRIPT_OUTPUT_DIR)
-if MANUSCRIPT_OUTPUT_DIR is not None:
-    MANUSCRIPT_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Load LLM pairwise files
