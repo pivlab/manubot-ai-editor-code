@@ -36,6 +36,12 @@ INPUT_DIR = conf.common.LLM_PAIRWISE_DIR
 assert INPUT_DIR.exists()
 display(INPUT_DIR)
 
+# %%
+MANUSCRIPT_OUTPUT_DIR = conf.manuscript.DIR
+display(MANUSCRIPT_OUTPUT_DIR)
+if MANUSCRIPT_OUTPUT_DIR is not None:
+    MANUSCRIPT_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
 # %% [markdown] editable=true slideshow={"slide_type": ""} tags=[]
 # # Load LLM pairwise files
 
@@ -212,5 +218,9 @@ with sns.plotting_context(
         if ax_idx in (1, 3):
             sns.despine(ax=ax, left=True)
             ax.yaxis.set_tick_params(left=False)
+
+    if MANUSCRIPT_OUTPUT_DIR is not None:
+        display(f"Saving figure to {MANUSCRIPT_OUTPUT_DIR}")
+        g.savefig(MANUSCRIPT_OUTPUT_DIR / "llm_judge.svg")
 
 # %%
