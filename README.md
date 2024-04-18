@@ -1,6 +1,6 @@
 # Code for the Manubot AI Editor manuscript
 
-The manuscript repository is at 
+This repository contains code for the LLM-as-a-Judge analyses for the [Manubot AI Editor manuscript]([url](https://greenelab.github.io/manubot-gpt-manuscript/)).
 
 ## Setup
 
